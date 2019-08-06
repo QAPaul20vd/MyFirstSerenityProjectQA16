@@ -18,23 +18,35 @@ public class LoginPage extends PageObject {
     private WebElementFacade loginButton;
 
     @FindBy(css = ".error-msg span")
-    private WebElementFacade errorMessageSpan;
+    private WebElementFacade errorMessageSpanWrongPassWord;
+
+    @FindBy(css = ".validation-advice")
+    private WebElementFacade errorMessage;
 
     public void setEmailField(String email) {
         typeInto(emailField, email);
+    }
+
+    public boolean emailFieldIsVisible(){
+        return emailField.isCurrentlyVisible();
     }
 
     public void setPassField(String pass) {
         typeInto(passField, pass);
     }
 
-    public void clickLoginButton(){
+    public void clickLoginButton() {
         clickOn(loginButton);
     }
 
-    public void verifyNotLoggedIn(){
-        errorMessageSpan.shouldContainText("Invalid login or password.");
+    public void verifyNotLoggedIn() {
+        errorMessageSpanWrongPassWord.shouldContainText("Invalid login or password.");
     }
+
+    public void verifyNotLoggedInWrongEmail(){
+        errorMessage.isCurrentlyVisible();
+    }
+
 
 
 }

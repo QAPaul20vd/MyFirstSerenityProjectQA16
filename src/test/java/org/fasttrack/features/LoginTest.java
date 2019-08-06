@@ -14,22 +14,21 @@ import org.openqa.selenium.WebDriver;
 @RunWith(SerenityRunner.class)
 public class LoginTest {
 
+
     @Managed(uniqueSession = true)
-    private   WebDriver driver;
+    private WebDriver driver;
 
     @Before
-    public  void maximiseWindow(){
+    public void maximiseWindow() {
         driver.manage().window().maximize();
     }
-
 
     @Steps
     private LoginSteps loginSteps;
 
-
-    private String userEmail = "cosmin@fasttrackit.org";
-    private String userPass = "123456";
-    private String userName = "asdasda asdasd";
+    private String userEmail = "QAautotest@mailinator.com";
+    private String userPass = "autotest123";
+    private String userName = "Auto Test";
 
     @Test
     public void validLoginTest() {
@@ -39,10 +38,24 @@ public class LoginTest {
     }
 
     @Test
-    public void invalidLoginTest() {
+    public void invalidLoginTestWithWrongPassword() {
         loginSteps.navigateToLoginPage();
         loginSteps.performLogin(userEmail, "aaaaaaaaa");
         loginSteps.checkNotLoggedIn();
+    }
+
+    @Test
+    public void invalidLoginTestWithWrongEmail() {
+        loginSteps.navigateToLoginPage();
+        loginSteps.performLogin("QAautotest@mailinator", userPass);
+        loginSteps.checkNotLoggedInWrongMail();
+    }
+
+    @Test
+    public void invalidLoginTestEmptyFields() {
+        loginSteps.navigateToLoginPage();
+        loginSteps.performLogin("", "");
+        loginSteps.checkNotLoggedInWrongMail();
     }
 
 

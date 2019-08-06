@@ -36,4 +36,9 @@ public class LoginSteps {
         loginPage.verifyNotLoggedIn();
     }
 
+    @Step
+    public void checkNotLoggedInWrongMail(){
+        loginPage.verifyNotLoggedInWrongEmail();
+    }
+
 }
