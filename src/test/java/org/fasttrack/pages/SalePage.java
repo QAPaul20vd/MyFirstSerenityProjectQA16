@@ -12,6 +12,7 @@ public class SalePage extends PageObject {
     @FindBy(css = ".nav-5")
     private WebElementFacade saleButton;
 
+
     public void clickSale(){
         clickOn(saleButton);
     }
