@@ -4,6 +4,7 @@ package org.fasttrack.features;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
+import org.fasttrack.Utils.Constants;
 import org.fasttrack.steps.LoginSteps;
 import org.fasttrack.steps.WishlistSteps;
 import org.junit.Before;
@@ -25,10 +26,6 @@ public class WishlistTest {
     @Steps
     private WishlistSteps wishlistSteps;
 
-    private String userEmail = "QAautotest@mailinator.com";
-    private String userPass = "autotest123";
-    private String userName = "Auto Test";
-
     @Test
     public void addToWishlistNotLoggedIn(){
         wishlistSteps.navigateToSalePage();
@@ -41,7 +38,7 @@ public class WishlistTest {
     @Test
     public void addToWishlistLoggedIn(){
         wishlistSteps.navigateToLoginPage();
-        wishlistSteps.performLogin(userEmail,userPass);
+        wishlistSteps.performLogin(Constants.USER_EMAIL,Constants.USER_PASSWORD);
         wishlistSteps.navigateToSalePage();
         wishlistSteps.navigateToDetailsOfFirstProduct();
         wishlistSteps.clickAddToWishlist();
