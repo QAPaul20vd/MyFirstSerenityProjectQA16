@@ -41,4 +41,9 @@ public class LoginSteps {
         loginPage.verifyNotLoggedInWrongEmail();
     }
 
+    @Step
+    public void navigateToHomepage(){
+        homePage.open();
+    }
+
 }

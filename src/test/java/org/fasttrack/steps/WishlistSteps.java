@@ -49,12 +49,12 @@ public class WishlistSteps {
 
     @Step
     public void successfullAddToWishlist() {
-        Assert.assertTrue("The user is not logged in!",myWishlistPage.successMsgIsDisplayed());
+        Assert.assertTrue("The user is not logged in!", myWishlistPage.successMsgIsDisplayed());
 
     }
 
     @Step
-    public void removeItemFromWishlist(){
+    public void removeItemFromWishlist() {
         myWishlistPage.clickRemoveItem();
     }
 
