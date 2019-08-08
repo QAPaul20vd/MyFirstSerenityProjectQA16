@@ -9,6 +9,7 @@ import net.thucydides.core.annotations.DefaultUrl;
 
 public class SalePage extends PageObject {
 
+
     @FindBy(css = ".nav-5")
     private WebElementFacade saleButton;
 
