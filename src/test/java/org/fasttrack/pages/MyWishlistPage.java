@@ -14,12 +14,19 @@ public class MyWishlistPage extends PageObject {
     @FindBy(css = ".first.odd .btn-remove")
     private WebElementFacade removeItem;
 
+    @FindBy(css = ".wishlist-empty")
+    private WebElementFacade wishlistEmpty;
+
     public boolean successMsgIsDisplayed(){
        return successMsg.isCurrentlyVisible();
     }
 
     public void clickRemoveItem(){
         clickOn(removeItem);
+    }
+
+    public boolean checkWishlistIsEmpty(){
+        return wishlistEmpty.isCurrentlyVisible();
     }
 
 

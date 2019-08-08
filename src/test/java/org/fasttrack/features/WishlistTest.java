@@ -24,7 +24,6 @@ public class WishlistTest {
 
     @Steps
     private WishlistSteps wishlistSteps;
-    private LoginSteps loginSteps;
 
     private String userEmail = "QAautotest@mailinator.com";
     private String userPass = "autotest123";
@@ -48,6 +47,7 @@ public class WishlistTest {
         wishlistSteps.clickAddToWishlist();
         wishlistSteps.successfullAddToWishlist();
         wishlistSteps.removeItemFromWishlist();
+        wishlistSteps.checkIfItemWasDeleted();
     }
 
 }

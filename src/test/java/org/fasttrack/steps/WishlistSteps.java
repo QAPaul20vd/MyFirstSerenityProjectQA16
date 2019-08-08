@@ -29,6 +29,7 @@ public class WishlistSteps {
         detailsPage.clickWishlistButton();
     }
 
+    @Step
     public void userNotLoggedIn() {
         loginPage.emailFieldIsVisible();
     }
@@ -56,6 +57,12 @@ public class WishlistSteps {
     @Step
     public void removeItemFromWishlist() {
         myWishlistPage.clickRemoveItem();
+        myWishlistPage.getAlert().accept();
+    }
+
+    @Step
+    public void checkIfItemWasDeleted() {
+        Assert.assertTrue("Wishlist is not empty!", myWishlistPage.checkWishlistIsEmpty());
     }
 
 }

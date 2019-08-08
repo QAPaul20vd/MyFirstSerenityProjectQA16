@@ -4,6 +4,7 @@ package org.fasttrack.features;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
+import org.fasttrack.Utils.Constants;
 import org.fasttrack.steps.LoginSteps;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -26,28 +27,24 @@ public class LoginTest {
     @Steps
     private LoginSteps loginSteps;
 
-    private String userEmail = "QAautotest@mailinator.com";
-    private String userPass = "autotest123";
-    private String userName = "Auto Test";
-
     @Test
     public void validLoginTest() {
         loginSteps.navigateToLoginPage();
-        loginSteps.performLogin(userEmail, userPass);
-        loginSteps.checkLoggedIn(userName);
+        loginSteps.performLogin(Constants.USER_EMAIL, Constants.USER_PASSWORD);
+        loginSteps.checkLoggedIn(Constants.USER_NAME);
     }
 
     @Test
     public void invalidLoginTestWithWrongPassword() {
         loginSteps.navigateToLoginPage();
-        loginSteps.performLogin(userEmail, "aaaaaaaaa");
+        loginSteps.performLogin(Constants.USER_EMAIL, "aaaaaaaaa");
         loginSteps.checkNotLoggedIn();
     }
 
     @Test
     public void invalidLoginTestWithWrongEmail() {
         loginSteps.navigateToLoginPage();
-        loginSteps.performLogin("QAautotest@mailinator", userPass);
+        loginSteps.performLogin("QAautotest@mailinator", Constants.USER_PASSWORD);
         loginSteps.checkNotLoggedInWrongMail();
     }
 
