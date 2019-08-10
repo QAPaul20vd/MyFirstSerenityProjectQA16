@@ -8,15 +8,13 @@ public class WishlistSteps {
 
     private DetailsPage detailsPage;
     private ProductsPage productsPage;
-    private SalePage salePage;
     private LoginPage loginPage;
     private HomePage homePage;
     private MyWishlistPage myWishlistPage;
 
     @Step
     public void navigateToSalePage() {
-        salePage.open();
-        salePage.clickSale();
+        homePage.clickSale();
     }
 
     @Step

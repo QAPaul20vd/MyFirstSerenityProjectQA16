@@ -29,15 +29,21 @@ public class SearchTest extends PageObject {
     @Steps
     private LoginSteps loginSteps;
 
-    private String item = "necklace";
 
     @Test
     public void performSearch(){
         loginSteps.navigateToHomepage();
-        searchSteps.searchByItem(item);
+        searchSteps.searchByItem("necklace");
         searchSteps.checkProductInResults("LUDLOW SHEATH DRESS");
     }
 
+    @Test
+    public void searchByPrice(){
+        loginSteps.navigateToHomepage();
+        searchSteps.searchByItem("necklace");
+        searchSteps.sortProductsByCriteria("Price");
+        searchSteps.verifySorting();
+    }
 
 
 }

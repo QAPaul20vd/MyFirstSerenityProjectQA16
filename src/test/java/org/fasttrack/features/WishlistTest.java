@@ -26,8 +26,12 @@ public class WishlistTest {
     @Steps
     private WishlistSteps wishlistSteps;
 
+    @Steps
+    private LoginSteps loginSteps;
+
     @Test
     public void addToWishlistNotLoggedIn(){
+        loginSteps.navigateToHomepage();
         wishlistSteps.navigateToSalePage();
         wishlistSteps.navigateToDetailsOfFirstProduct();
         wishlistSteps.clickAddToWishlist();

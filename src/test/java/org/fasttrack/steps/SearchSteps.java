@@ -22,4 +22,14 @@ public class SearchSteps extends PageObject {
     public void checkProductInResults(String productName) {
         Assert.assertTrue("Product is not on page.", searchResultsPage.isProductOnPage(productName));
     }
+
+    @Step
+    public void sortProductsByCriteria(String sortBy) {
+        searchResultsPage.selectSortCriteria(sortBy);
+    }
+
+    @Step
+    public void verifySorting(){
+        Assert.assertTrue("Prices are not sorted",searchResultsPage.comparePrices());
+    }
 }
