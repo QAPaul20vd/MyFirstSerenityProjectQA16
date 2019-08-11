@@ -14,6 +14,15 @@ public class SearchResultsPage extends PageObject {
     @FindBy(css = ".products-grid .item")
     private List<WebElementFacade> listOfProducts;
 
+    @FindBy(css = ".category-products > .toolbar select[title='Sort By']")
+    private WebElementFacade sortCriteria;
+
+    @FindBy(css = ".category-products > div:first-child a[title~=Descending]")
+    private WebElementFacade sortDirection;
+
+    @FindBy(css = "[id|=product-price]")
+    private List<WebElementFacade> listOfPrices;
+
     public boolean isProductOnPage(String productName) {
         for (WebElementFacade element : listOfProducts) {
             if (element.findElement(By.cssSelector(".product-name a")).getText().equals(productName))
@@ -22,34 +31,33 @@ public class SearchResultsPage extends PageObject {
         return false;
     }
 
-    @FindBy(css = ".category-products > .toolbar select[title='Sort By']")
-    private WebElementFacade sortCriteria;
-
     public void selectSortCriteria(String sortBy) {
         sortCriteria.selectByVisibleText(sortBy);
     }
 
-    public boolean comparePrices() {
+    private int getIntPrice(String price) {
+        String[] arrPrice = price.split(",");
+        String finalPrice = arrPrice[0];
+        int intPrice = Integer.valueOf(finalPrice);
+        return intPrice;
+    }
 
-        String firstPrice = listOfProducts.get(0).findElement(By.cssSelector(".price")).getText();
-//        System.out.println(firstPrice);
-        String[] arrFirstPrice = firstPrice.split(",");
-        String firstProductPrice = arrFirstPrice[0];
+    public boolean compareFirstWithLastProductPrices() {
 
-        String lastPrice = listOfProducts.get(listOfProducts.size() - 1).findElement(By.cssSelector(".price")).getText();
-//        System.out.println(lastPrice);
-        String[] arrLastPrice = lastPrice.split(",");
-        String lastProductPrice = arrLastPrice[0];
+        int valueFirst = getIntPrice(listOfProducts.get(0).findElement(By.cssSelector(".price")).getText());
+        int valueLast = getIntPrice(listOfProducts.get(listOfProducts.size() - 1).findElement(By.cssSelector(".price")).getText());
 
-        Integer valueFirst = Integer.valueOf(firstProductPrice);
-//        System.out.println(valueFirst);
-        Integer valueLast = Integer.valueOf(lastProductPrice);
-//        System.out.println(valueLast);
+        return sortDirection.isCurrentlyVisible() && valueFirst < valueLast;
+    }
 
-        if (valueFirst < valueLast)
-            return true;
-        else
-            return false;
+    public boolean verifyAscendingSortingPriceByPrice() {
+        for (int i = 0; i < listOfPrices.size() - 1; i++) {
+            for (int j = i + 1; j < listOfPrices.size(); j++) {
+                if (getIntPrice(listOfPrices.get(i).getText()) < getIntPrice(listOfPrices.get(j).getText()))
+                    return true;
+            }
+        }
+        return false;
     }
 
 

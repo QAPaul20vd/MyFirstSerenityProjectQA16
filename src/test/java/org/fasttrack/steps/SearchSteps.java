@@ -29,7 +29,13 @@ public class SearchSteps extends PageObject {
     }
 
     @Step
-    public void verifySorting(){
-        Assert.assertTrue("Prices are not sorted",searchResultsPage.comparePrices());
+    public void verifySortingFirstWithLast(){
+        Assert.assertTrue("Products are not sorted!",searchResultsPage.compareFirstWithLastProductPrices());
+
+    }
+
+    @Step
+    public void verifySortingPriceByPrice(){
+        Assert.assertTrue("Some products are not sorted!",searchResultsPage.verifyAscendingSortingPriceByPrice());
     }
 }

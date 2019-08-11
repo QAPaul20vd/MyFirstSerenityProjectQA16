@@ -3,7 +3,6 @@ package org.fasttrack.features;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
-import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 import org.fasttrack.steps.LoginSteps;
 import org.fasttrack.steps.SearchSteps;
@@ -38,11 +37,12 @@ public class SearchTest extends PageObject {
     }
 
     @Test
-    public void searchByPrice(){
+    public void searchByItemAndSortAscendingByPrice(){
         loginSteps.navigateToHomepage();
-        searchSteps.searchByItem("necklace");
+        searchSteps.searchByItem("bed");
         searchSteps.sortProductsByCriteria("Price");
-        searchSteps.verifySorting();
+        searchSteps.verifySortingFirstWithLast();
+        searchSteps.verifySortingPriceByPrice();
     }
 
 
