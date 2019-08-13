@@ -6,6 +6,7 @@ import org.fasttrack.pages.CartPage;
 import org.fasttrack.pages.HomePage;
 import org.fasttrack.pages.ProductsPage;
 import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
 
 
 public class AddToCartSteps extends PageObject {
@@ -70,12 +71,10 @@ public class AddToCartSteps extends PageObject {
         Assert.assertTrue("Subtotal is not correct!",cartPage.verifySubtotalOfDifferentProducts());
     }
 
-
-
-
-
-
-
+    @Step
+    public void clickAccess(){
+        homePage.hover();
+    }
 
 
 }

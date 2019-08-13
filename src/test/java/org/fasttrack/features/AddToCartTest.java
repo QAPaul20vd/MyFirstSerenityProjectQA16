@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
+
 @RunWith(SerenityRunner.class)
 public class AddToCartTest extends PageObject {
 
@@ -70,8 +71,12 @@ public class AddToCartTest extends PageObject {
         addToCartSteps.verifyAddingToCart();
 
         addToCartSteps.verifySum();
+    }
 
-
+    @Test
+    public void hover() {
+        loginSteps.navigateToHomepage();
+        addToCartSteps.clickAccess();
     }
 
 }

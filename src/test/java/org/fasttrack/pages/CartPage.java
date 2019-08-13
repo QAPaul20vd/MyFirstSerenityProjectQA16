@@ -3,6 +3,7 @@ package org.fasttrack.pages;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.openqa.selenium.WebDriver;
 
 import java.util.List;
 
@@ -26,6 +27,9 @@ public class CartPage extends PageObject {
     @FindBy(css = ".btn-continue")
     private WebElementFacade continueShoppingButton;
 
+    @FindBy(css = ".page-title button")
+    private WebElementFacade checkoutButton;
+
     public void verifyProductIsAddedToCart() {
         confirmationMesage.shouldBeCurrentlyVisible();
     }
@@ -39,36 +43,25 @@ public class CartPage extends PageObject {
         clickOn(updateQuantityButton);
     }
 
+    private int getIntPrice(String price) {
+        String[] arrPrice = price.split(",");
+        String finalPrice = arrPrice[0];
+
+        return Integer.valueOf(finalPrice);
+    }
+
     public boolean verifyModifiedQuantitySubTotal(String desiredQty) {
 
-        String price = productPrice.get(0).getText();
-        String[] arrPrice = price.split(",");
-        String prodPrice = arrPrice[0];
-        int priceValue = Integer.valueOf(prodPrice);
-
-        String multipliedPrice = subTotal.getText();
-        String[] arrMultipliedPrice = multipliedPrice.split(",");
-        String totalPrice = arrMultipliedPrice[0];
-        int totalValue = Integer.valueOf(totalPrice);
+        int priceValue = getIntPrice(productPrice.get(0).getText());
+        int totalValue = getIntPrice(subTotal.getText());
 
         Integer quantity = Integer.valueOf(desiredQty);
 
-        if (priceValue * quantity == totalValue)
-            return true;
-        else
-            return false;
+        return priceValue * quantity == totalValue;
     }
 
     public void clickContinueShopping() {
         clickOn(continueShoppingButton);
-    }
-
-    private int getIntPrice(String price) {
-        String[] arrPrice = price.split(",");
-        String finalPrice = arrPrice[0];
-        int intPrice = Integer.valueOf(finalPrice);
-
-        return intPrice;
     }
 
     public boolean verifySubtotalOfDifferentProducts() {
@@ -78,10 +71,7 @@ public class CartPage extends PageObject {
             sum = sum + getIntPrice(productPrice.get(i).getText());
         }
 
-        if (getIntPrice(subTotal.getText()) == sum)
-            return true;
-        return false;
-
+        return getIntPrice(subTotal.getText()) == sum;
     }
 
 }
