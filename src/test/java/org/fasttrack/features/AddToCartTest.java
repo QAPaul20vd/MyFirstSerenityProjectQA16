@@ -39,6 +39,8 @@ public class AddToCartTest extends PageObject {
         addToCartSteps.verifyAddingToCart();
         addToCartSteps.modifyQuantity(quantity);
         addToCartSteps.checkCalculation(quantity);
+
+        addToCartSteps.performEmptyCart();
     }
 
     @Test
@@ -71,12 +73,16 @@ public class AddToCartTest extends PageObject {
         addToCartSteps.verifyAddingToCart();
 
         addToCartSteps.verifySum();
+
+        addToCartSteps.performEmptyCart();
     }
 
-    @Test
-    public void hover() {
-        loginSteps.navigateToHomepage();
-        addToCartSteps.clickAccess();
-    }
+//    @Test
+//    public void hover() {
+//        loginSteps.navigateToHomepage();
+//        addToCartSteps.clickAccess();
+//    }
+
+
 
 }

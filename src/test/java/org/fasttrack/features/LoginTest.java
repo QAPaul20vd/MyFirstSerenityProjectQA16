@@ -15,7 +15,6 @@ import org.openqa.selenium.WebDriver;
 @RunWith(SerenityRunner.class)
 public class LoginTest {
 
-
     @Managed(uniqueSession = true)
     private WebDriver driver;
 

@@ -3,8 +3,6 @@ package org.fasttrack.pages;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
-import org.openqa.selenium.WebDriver;
-
 import java.util.List;
 
 public class CartPage extends PageObject {
@@ -27,8 +25,14 @@ public class CartPage extends PageObject {
     @FindBy(css = ".btn-continue")
     private WebElementFacade continueShoppingButton;
 
+    @FindBy(css = ".btn-empty")
+    private WebElementFacade emptyCartButton;
+
     @FindBy(css = ".page-title button")
     private WebElementFacade checkoutButton;
+
+    @FindBy(css = "h1")
+    private WebElementFacade emptyCartMessage;
 
     public void verifyProductIsAddedToCart() {
         confirmationMesage.shouldBeCurrentlyVisible();
@@ -72,6 +76,18 @@ public class CartPage extends PageObject {
         }
 
         return getIntPrice(subTotal.getText()) == sum;
+    }
+
+    public void clickCheckoutButton(){
+        clickOn(checkoutButton);
+    }
+
+    public void clickEmptyCartButton(){
+        clickOn(emptyCartButton);
+    }
+
+    public void verifyCartIsEmpty(){
+        emptyCartMessage.shouldContainText("Shopping cart is empty".toUpperCase());
     }
 
 }

@@ -76,5 +76,11 @@ public class AddToCartSteps extends PageObject {
         homePage.hover();
     }
 
+    @Step
+    public void performEmptyCart(){
+        cartPage.clickEmptyCartButton();
+        cartPage.verifyCartIsEmpty();
+    }
+
 
 }
