@@ -27,5 +27,20 @@ public class CheckoutSteps extends PageObject {
         checkoutPage.clickLogin();
     }
 
+    @Step
+    public void checkUserLoggedIn(String username){
+        checkoutPage.verifyUserIsLoggedIn(username);
+    }
+
+    @Step
+    public void completeCheckoutFields(){
+        checkoutPage.fillCheckoutFields();
+    }
+
+    @Step
+    public void verifyCheckoutComplete(){
+        checkoutPage.orderIsComplete();
+    }
+
 
 }

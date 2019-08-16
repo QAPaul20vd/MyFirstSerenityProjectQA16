@@ -49,17 +49,22 @@ public class CheckoutTest  {
     public void checkoutUserLogInAfterAddingToCart(){
 
         loginSteps.navigateToHomepage();
-
         addToCartSteps.navigateToVipMenu();
-        addToCartSteps.performAddToCart();
+        addToCartSteps.clickOnItem(0);
+        addToCartSteps.selectColor(0);
+        addToCartSteps.selectDesiredSize(0);
+        addToCartSteps.addToCart();
         addToCartSteps.verifyAddingToCart();
 
         checkoutSteps.proceedToCheckout();
         checkoutSteps.verifyUserNotLoggedIn();
         checkoutSteps.performLogin(Constants.USER_EMAIL, Constants.USER_PASSWORD);
+        checkoutSteps.checkUserLoggedIn(Constants.USER_NAME);
 
-
-//        loginSteps.checkLoggedIn(Constants.USER_NAME);
+        checkoutSteps.completeCheckoutFields();
+        checkoutSteps.verifyCheckoutComplete();
     }
+
+
 
 }
