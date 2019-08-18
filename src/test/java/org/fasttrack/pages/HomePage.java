@@ -4,11 +4,7 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+
 
 @DefaultUrl("https://fasttrackit.org/selenium-test/")
 public class HomePage extends PageObject {
@@ -18,6 +14,12 @@ public class HomePage extends PageObject {
 
     @FindBy(css = "a[title='Log In']")
     private WebElementFacade loginLink;
+
+    @FindBy(css = "a[title='Log Out']")
+    private WebElementFacade logoutLink;
+
+    @FindBy(css = ".welcome-msg")
+    private WebElementFacade welcomeMesage;
 
     @FindBy(css = "#search")
     private WebElementFacade searchField;
@@ -41,6 +43,14 @@ public class HomePage extends PageObject {
         clickOn(loginLink);
     }
 
+    public void clickLogoutLink(){
+        clickOn(logoutLink);
+    }
+
+    public void checkLogout(){
+        welcomeMesage.shouldContainOnlyText(("Welcome").toUpperCase());
+    }
+
     public void inputSearchTerm(String term) {
         typeInto(searchField, term);
     }
@@ -57,11 +67,12 @@ public class HomePage extends PageObject {
         clickOn(vipButton);
     }
 
+
     @FindBy(css = ".nav-primary >li >a[href*='accessories']")
     private WebElementFacade accessoriesButton;
-
-    @FindBy(css = ".nav-primary > li > ul > li > a[href*='shoes']")
-    private WebElementFacade shoesButton;
+//
+//    @FindBy(css = ".nav-primary > li > ul > li > a[href*='shoes']")
+//    private WebElementFacade shoesButton;
 
     public void hover(){
 //        WebDriver wb = getDriver();

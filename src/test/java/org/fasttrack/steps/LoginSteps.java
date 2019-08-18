@@ -14,7 +14,6 @@ public class LoginSteps {
 
     @Step
     public void navigateToLoginPage(){
-        homePage.open();
         homePage.clickAccount();
         homePage.clickLoginLink();
     }
@@ -44,6 +43,17 @@ public class LoginSteps {
     @Step
     public void navigateToHomepage(){
         homePage.open();
+    }
+
+    @Step
+    public void performLogout(){
+        homePage.clickAccount();
+        homePage.clickLogoutLink();
+    }
+
+    @Step
+    public void checkLoggedOut(){
+        homePage.checkLogout();
     }
 
 }

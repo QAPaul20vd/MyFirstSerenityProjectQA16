@@ -28,6 +28,7 @@ public class LoginTest {
 
     @Test
     public void validLoginTest() {
+        loginSteps.navigateToHomepage();
         loginSteps.navigateToLoginPage();
         loginSteps.performLogin(Constants.USER_EMAIL, Constants.USER_PASSWORD);
         loginSteps.checkLoggedIn(Constants.USER_NAME);
@@ -35,6 +36,7 @@ public class LoginTest {
 
     @Test
     public void invalidLoginTestWithWrongPassword() {
+        loginSteps.navigateToHomepage();
         loginSteps.navigateToLoginPage();
         loginSteps.performLogin(Constants.USER_EMAIL, "aaaaaaaaa");
         loginSteps.checkNotLoggedIn();
@@ -42,6 +44,7 @@ public class LoginTest {
 
     @Test
     public void invalidLoginTestWithWrongEmail() {
+        loginSteps.navigateToHomepage();
         loginSteps.navigateToLoginPage();
         loginSteps.performLogin("QAautotest@mailinator", Constants.USER_PASSWORD);
         loginSteps.checkNotLoggedInWrongMail();
@@ -49,9 +52,20 @@ public class LoginTest {
 
     @Test
     public void invalidLoginTestEmptyFields() {
+        loginSteps.navigateToHomepage();
         loginSteps.navigateToLoginPage();
         loginSteps.performLogin("", "");
         loginSteps.checkNotLoggedInWrongMail();
+    }
+
+    @Test
+    public void loginLogoutTest(){
+        loginSteps.navigateToHomepage();
+        loginSteps.navigateToLoginPage();
+        loginSteps.performLogin(Constants.USER_EMAIL, Constants.USER_PASSWORD);
+        loginSteps.checkLoggedIn(Constants.USER_NAME);
+        loginSteps.performLogout();
+        loginSteps.checkLoggedOut();
     }
 
 

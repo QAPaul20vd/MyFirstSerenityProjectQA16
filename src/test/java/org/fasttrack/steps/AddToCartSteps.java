@@ -16,71 +16,73 @@ public class AddToCartSteps extends PageObject {
     private CartPage cartPage;
 
     @Step
-    public void navigateToVipMenu(){
+    public void navigateToVipMenu() {
         homePage.clickVip();
     }
 
     @Step
-    public void performAddToCart(){
+    public void performAddToCart() {
         productsPage.clickAddToCart();
     }
 
     @Step
-    public void addToCart(){
+    public void addToCart() {
         productsPage.addToCart();
     }
 
     @Step
-    public void verifyAddingToCart(){
+    public void verifyAddingToCart() {
         cartPage.verifyProductIsAddedToCart();
     }
 
     @Step
-    public void modifyQuantity(String desiredQty){
+    public void modifyQuantity(String desiredQty) {
         cartPage.modifyQuantity(desiredQty);
         cartPage.updateQuantity();
     }
 
     @Step
-    public void checkCalculation(String qty){
-        Assert.assertTrue("Subtotal is not correct!",cartPage.verifyModifiedQuantitySubTotal(qty));
+    public void checkCalculation(String qty) {
+        Assert.assertTrue("Subtotal is not correct!", cartPage.verifyModifiedQuantitySubTotal(qty));
     }
 
     @Step
-    public void continueShopping(){
+    public void continueShopping() {
         cartPage.clickContinueShopping();
     }
 
     @Step
-    public void clickOnItem(int noOfProduct){
+    public void clickOnItem(int noOfProduct) {
         productsPage.clickOnProductDetail(noOfProduct);
     }
 
     @Step
-    public void selectColor(int noColor){
+    public void selectColor(int noColor) {
         productsPage.selectColor(noColor);
     }
 
     @Step
-    public void selectDesiredSize(int noSize){
+    public void selectDesiredSize(int noSize) {
         productsPage.clickOneSize(noSize);
     }
 
     @Step
-    public void verifySum(){
-        Assert.assertTrue("Subtotal is not correct!",cartPage.verifySubtotalOfDifferentProducts());
+    public void verifySum() {
+        Assert.assertTrue("Subtotal is not correct!", cartPage.verifySubtotalOfDifferentProducts());
     }
 
     @Step
-    public void clickAccess(){
+    public void clickAccess() {
         homePage.hover();
     }
 
     @Step
-    public void performEmptyCart(){
+    public void performEmptyCart() {
         cartPage.clickEmptyCartButton();
         cartPage.verifyCartIsEmpty();
     }
+
+
 
 
 }
