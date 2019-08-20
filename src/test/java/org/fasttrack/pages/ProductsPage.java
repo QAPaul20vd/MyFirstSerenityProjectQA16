@@ -90,7 +90,6 @@ public class ProductsPage extends PageObject {
             intUpperPrice = Integer.MAX_VALUE;
         }
 
-
         for (WebElementFacade prodPrice : pricesOfProducts) {
             if (getIntPrice(prodPrice.getText()) >= intLowerPrice && getIntPrice(prodPrice.getText()) <= intUpperPrice)
                 return true;

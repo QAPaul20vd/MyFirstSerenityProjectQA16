@@ -18,6 +18,9 @@ public class HomePage extends PageObject {
     @FindBy(css = "a[title='Log Out']")
     private WebElementFacade logoutLink;
 
+    @FindBy(css = "a[href*=create]")
+    private WebElementFacade registerLink;
+
     @FindBy(css = ".welcome-msg")
     private WebElementFacade welcomeMesage;
 
@@ -49,6 +52,10 @@ public class HomePage extends PageObject {
 
     public void checkLogout(){
         welcomeMesage.shouldContainOnlyText(("Welcome").toUpperCase());
+    }
+
+    public void clickRegisterLink(){
+        clickOn(registerLink);
     }
 
     public void inputSearchTerm(String term) {
